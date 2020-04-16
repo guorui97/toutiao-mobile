@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 实现正则替换
+        var str ="abdAd";
+        var keywork = "ab"
+        // 目标是：
+        //     把所有的a替换成<span style="color:red">a</span>
+        // 请开始你的表演
+        // replace如果不用正则，只能换一次
+        // var str1 = str.replace("a",'<span style="color:red">a</span>')
+
+        // replace(正则，函数)
+        // /a/gi :正则
+        //      g表明要做全局匹配。只匹配出所有的子串。
+        //      i表明匹配不分大小写。
+        // new RegExp('a','gi'); 用构造器的方式来创建正则表达式就可以把
+        //     第一个参数写成变量
+        // 如果在字符串用正则匹配到了内容，则会去执行函数。
+        // 函数的执行细节是：
+        //  - 参数obj是匹配到的内容 
+        //  - 返回值是替换之后的结果 
+        var str1 = str.replace(new RegExp(keywork,'gi'),function(obj){
+            console.log(obj)
+            return '<span style="color:red">'+obj+'</span>'
+        })
+
+        console.log(str1); // '<span style="color:red">a</span>bAdd'
+    </script>
+</body>
+</html>
