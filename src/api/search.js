@@ -17,3 +17,16 @@ export function getSearchSuggestions (keyword) {
     }
   })
 }
+
+/**
+ * 获取搜索结果
+ * @param {*} params ｛page,per_page,qs｝
+ */
+export function getSearch (params) {
+  return request({
+    url: '/app/v1_0/search',
+    method: 'GET',
+    // 它是一个get类型的接口，所以是params
+    params
+  })
+}

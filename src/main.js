@@ -10,7 +10,39 @@ import { relativeTime } from '@/utils/date-time'
 //
 // 在导入的时，XXX ---> Vant
 //            Lazyload 就是 普通导出 Lazyload
-import Vant, { Lazyload } from 'vant'
+// import Vant, { Lazyload } from 'vant'
+
+// 按需引入在项目中用到组件
+import {
+  Tabbar,
+  TabbarItem,
+  Form,
+  Field,
+  Button,
+  NavBar,
+  Toast,
+  Tabs,
+  Tab,
+  List,
+  Lazyload,
+  CellGroup,
+  Cell,
+  Icon,
+  Grid,
+  GridItem,
+  Popup,
+  Row,
+  Col,
+  Tag,
+  Image,
+  PullRefresh,
+  ActionSheet,
+  Dialog,
+  Search,
+  DatetimePicker
+
+} from 'vant'
+
 // 用它的样式
 import 'vant/lib/index.css'
 
@@ -21,10 +53,37 @@ import 'amfe-flexible'
 import './styles/index.less'
 
 // 用一下组件
-Vue.use(Vant)
+// Vue.use(Vant)
+
+Vue.use(Tabbar)
+Vue.use(TabbarItem)
+Vue.use(Form)
+Vue.use(Field)
+Vue.use(Button)
+Vue.use(NavBar)
+Vue.use(Toast)
+Vue.use(Tabs)
+Vue.use(Tab)
+Vue.use(List)
+Vue.use(Lazyload)
+Vue.use(CellGroup)
+Vue.use(Cell)
+Vue.use(Icon)
+Vue.use(Grid)
+Vue.use(GridItem)
+Vue.use(Popup)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Tag)
+Vue.use(Image)
+Vue.use(PullRefresh)
+Vue.use(ActionSheet)
+Vue.use(Dialog)
+Vue.use(Search)
+Vue.use(DatetimePicker)
 
 // 使用懒加载
-Vue.use(Lazyload)
+// Vue.use(Lazyload)
 
 // 挂载事件总线
 // prototype是构造器的原型对象。
@@ -47,3 +106,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+console.log(1)

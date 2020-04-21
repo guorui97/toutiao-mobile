@@ -91,6 +91,8 @@ export default {
   methods: {
     // 把item这个频道添加到我的频道中
     async hAddChannel (item) {
+      // todo: 先去已有频道去检查一下，是否当前频道已经存在。
+
       // channels表示此时所有的频道信息
       const allChannelNow = [...this.channels, item]
       // 改成接口中需要格式

@@ -1,5 +1,15 @@
 <template>
-  <div>
+ <!--
+   scroll-wrapper 在这个容器产生滚动条。
+   为了恢复页时，能记住它的滚动条位置
+   1. 当滚动事件发生时，把当前的滚动条位置记下
+     scroll事件
+   2. 当页面恢复，重新设置一下滚动条位置
+     对于已经缓存组件，它自己及它的子组件都会多出两个特殊的生命周期钩子函数
+      activated:  组件激活
+      deactivated:组件失活
+ -->
+  <div class="scroll-wrapper" @scroll="remember" ref="myScroll">
     <van-pull-refresh v-model="isLoadingNew" @refresh="onRefresh">
       <!--van-list:自带有下拉加载更多的效果-->
       <van-list
@@ -8,7 +18,12 @@
         finished-text="讨厌，人家被你看完了"
         @load="onLoad"
       >
-        <van-cell v-for="(item,index) in list" :key="index" :title="item.title">
+        <van-cell
+        v-for="(item,index) in list"
+        :key="index"
+        :title="item.title"
+        @click="$router.push('/article/'+item.art_id)"
+        >
           <!--
             label是一个插槽名，是van-cell组件中提供的。它的作用是让元素在标题的正下方
             -->
@@ -38,7 +53,7 @@
                 登陆用户可以看见 X
                 依据：只有登陆用户才有vuex 中 user
                -->
-              <span class="close" v-if="$store.state.user" @click="hMoreAction(item.art_id)">
+              <span class="close" v-if="$store.state.user" @click.stop="hMoreAction(item.art_id)">
                 <van-icon name="cross"></van-icon>
               </span>
 
@@ -94,7 +109,28 @@ export default {
       }
     })
   },
+  activated () {
+    // 组件激活时的钩子函数
+    // console.log('activated')
+    // 去设置一下滚动条的位置
+    if (this.scrollTop && this.$refs.myScroll) {
+      // 恢复
+      this.$refs.myScroll.scrollTop = this.scrollTop
+    }
+  },
+  deactivated () {
+    console.log('deactivated')
+  },
   methods: {
+    // 当scroll发生了，会自动传 event 事件对象
+    remember (event) {
+      // todo : 去完成节流操作
+
+      // 取出当前滚动条的位置
+      // 保存到一个普通的属性中。
+      this.scrollTop = event.target.scrollTop
+      // console.log(this.scrollTop)
+    },
     hMoreAction (bigintObj) {
       // 在request中封装了对大数的处理，所以这里的article_artId不是一个数值
       // 而是一个bigint对象，要获取它真正的数据，要通过toString

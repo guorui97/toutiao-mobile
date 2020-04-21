@@ -105,8 +105,9 @@ export default {
         // 方式二：mapMutations
         this.setUser(result.data.data)
 
-        // 用户跳转到主页
-        this.$router.push('/')
+        // 用户跳转
+        const to = this.$route.query.from || '/'
+        this.$router.push(to)
       } catch (err) {
         // 有错误，就会到这里来
         // err这个错误是 axios给出来了。它表示通过axios发请求时，请求出错了

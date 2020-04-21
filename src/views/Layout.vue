@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div class="container">
+  <!--如果当前是/user，则要隐藏van-nav-bar -->
     <van-nav-bar
+      v-show="$route.path!=='/user'"
       title="黑马头条"
       right-text="搜索"
       fixed

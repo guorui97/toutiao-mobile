@@ -48,3 +48,39 @@ export const reportArticle = (articleId, type) => {
     }
   })
 }
+
+/**
+ * 获取文章详情
+ * @param {*} articleId 文章编号
+ */
+export const getArticle = (articleId) => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/articles/' + articleId
+  })
+}
+
+/**
+ * 取消点赞
+ * @param {*} articleId 文章编号
+ */
+export const deleteLike = (articleId) => {
+  return request({
+    method: 'DELETE',
+    url: '/app/v1_0/article/likings/' + articleId
+  })
+}
+
+/**
+ * 给文章点赞
+ * @param {*} articleId 文章编号
+ */
+export const addLike = (articleId) => {
+  return request({
+    method: 'POST',
+    url: '/app/v1_0/article/likings',
+    data: {
+      target: articleId
+    }
+  })
+}
